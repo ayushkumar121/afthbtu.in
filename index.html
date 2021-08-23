@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Association of Food Technology</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="content">
+
+        <div class="logo">
+            <img src="assets/logo.png" alt="logo" />
+        </div>
+
+
+        <header>
+            <div class="drawer-container" x-data="{ open: false }" x-effect="drawerreact(open)">
+                <button @click="open = !open">
+                    <img src="assets/menu.svg" alt="menu" />
+                    <img src="assets/close.svg" alt="close" />
+                </button>
+
+                <div class="drawer-animation"></div>
+
+                <div class="drawer-content">
+
+                    <div class="drawer-menu">
+                        <a href="#">P<span class="unset-text-stroke">e</span>rks</a>
+                        <a href="#"><span class="unset-text-stroke">L</span>ab</a>
+                        <a href="#">Ab<span class="unset-text-stroke">o</span>ut us</a>
+                        <a href="#"><span class="unset-text-stroke">M</span>y Account</a>
+                    </div>
+
+                    <div class="drawer-feature"></div>
+
+                </div>
+
+            </div>
+        </header>
+
+        <main>
+            <div class="slider-container">
+                <div class="slider-viewport">
+
+                    <div class="slider">
+                        <div class="slide active" style="background-color: thistle;">
+
+                            <div class="slide-foreground">
+
+                            </div>
+                        </div>
+                        <div class="slide" style="background-color: lightgreen;">
+                            <div class="slide-foreground">
+
+                            </div>
+                        </div>
+                        <div class="slide" style="background-color: lightskyblue;">
+                            <div class="slide-foreground">
+
+                            </div>
+                        </div>
+                        <div class="slide" style="background-color: palegoldenrod;">
+                            <div class="slide-foreground">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="slider-indicators">
+
+                <div class="indicator-line"></div>
+
+                <div class="indicator">
+                    <div>Register</div>
+                </div>
+
+                <div class="indicator">
+                    <div>About us</div>
+                </div>
+
+                <div class="indicator">
+                    <div>Events</div>
+                </div>
+
+                <div class="indicator">
+                    <div>Contact us</div>
+                </div>
+
+            </div>
+
+            <div class="slider-controlles" x-data>
+                <button @click="moveLeft">
+                    <img src="assets/chevron--left.svg" alt="left">
+                </button>
+                <button @click="moveRight">
+                    <img src="assets/chevron--right.svg" alt="right">
+                </button>
+            </div>
+
+
+        </main>
+
+
+
+
+    </div>
+
+    <div class="content-loader">
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
