@@ -104,10 +104,6 @@ const slideList = document.querySelectorAll('.slider .slide');
 gsap.to('.slider', { duration: 0, width: slides * slideWidth, x: -slideWidth });
 slider.prepend(document.querySelector('.slider > div:last-child'))
 
-
-// const sliderfg01tl = gsap.timeline({ paused: true });
-// const sliderfg02tl = gsap.timeline({ paused: true });
-
 function moveRight() {
     if (!transitioning) {
         transitioning = true;
@@ -191,13 +187,20 @@ function fgAnimation01() {
 }
 
 function fgAnimation02() {
+    // gsap.to('.slide.active .slide-foreground', {
+    //     duration: 1,
+    //     x: -150,
+    //     opacity: 0,
+    // })
+
     gsap.to('.slide.active .slide-foreground', {
         duration: 1,
-        x: -150,
+        y: 0,
+        height: 100,
         opacity: 0,
+        ease: "expo.in",
     })
 }
-
 
 function indicator() {
     const indicatortl = gsap.timeline();
@@ -223,4 +226,44 @@ indicator();
 
 setInterval(() => {
     moveRight();
-}, 7000)
+}, 7000);
+
+
+
+function handleMouse(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+
+
+    gsap.to("#custom-mouse-1", {
+        top: y - 10,
+        left: x - 10,
+    });
+
+    gsap.to("#custom-mouse-2", {
+        top: y - 25,
+        left: x - 25,
+        duration: 1,
+        ease: "slow(0.7, 0.7, false)"
+    });
+}
+
+function handleMouseOver() {
+    gsap.to("#custom-mouse-2", {
+        scaleX: 1.5,
+        scaleY: 1.5,
+        duration: .5,
+        background: "rgba(0,0,0,.3)",
+        ease: "slow(0.7, 0.7, false)"
+    });
+}
+
+function handleMouseOut() {
+    gsap.to("#custom-mouse-2", {
+        scaleX: 1,
+        scaleY: 1,
+        duration: .5,
+        background: "transparent",
+        ease: "slow(0.7, 0.7, false)"
+    });
+}

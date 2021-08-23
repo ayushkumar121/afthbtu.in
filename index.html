@@ -16,18 +16,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
 </head>
 
-<body>
+<body onmousemove="handleMouse(event)">
 
     <div class="content">
 
         <div class="logo">
-            <img src="assets/logo.png" alt="logo" />
+            <img src="assets/logo.png" onmouseenter="" alt="logo" />
         </div>
 
 
         <header>
             <div class="drawer-container" x-data="{ open: false }" x-effect="drawerreact(open)">
-                <button @click="open = !open">
+                <button @mouseover="handleMouseOver" @mouseout="handleMouseOut" @click="open = !open">
                     <img src="assets/menu.svg" alt="menu" />
                     <img src="assets/close.svg" alt="close" />
                 </button>
@@ -104,10 +104,10 @@
             </div>
 
             <div class="slider-controlles" x-data>
-                <button @click="moveLeft">
+                <button @mouseover="handleMouseOver" @mouseout="handleMouseOut" @click="moveLeft">
                     <img src="assets/chevron--left.svg" alt="left">
                 </button>
-                <button @click="moveRight">
+                <button @mouseover="handleMouseOver" @mouseout="handleMouseOut" @click="moveRight">
                     <img src="assets/chevron--right.svg" alt="right">
                 </button>
             </div>
@@ -121,6 +121,14 @@
     </div>
 
     <div class="content-loader">
+
+    </div>
+
+    <div id="custom-mouse-1">
+
+    </div>
+
+    <div id="custom-mouse-2">
 
     </div>
 
