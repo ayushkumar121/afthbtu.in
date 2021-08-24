@@ -4,7 +4,7 @@
 
 
 :root {
-    --background: palegoldenrod;
+    --background: #f8e0c1;
     --slider-width: 1000px
 }
 
@@ -12,7 +12,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: #fff;
+    background: var(--background);
     overflow: hidden;
     cursor: none;
 }
@@ -96,7 +96,7 @@ button, a {
     z-index: 2;
     position: fixed;
     top: 100px;
-    left: 300px;
+    left: 200px;
     width: 100%;
     height: 100%;
     opacity: 0;
@@ -187,11 +187,20 @@ button, a {
     position: relative;
 }
 
+.slider .slide-content {
+    opacity: 0;
+    transform: translate(300px);
+}
+/* .slider > div.active {
+    opacity: 1;
+} */
+
 
 .slide-foreground{
     width: 400px;
-    /* height: 600px; */
-    background: red;
+    height: 600px;
+    background: transparent;
+    /* border: 1px solid rgba(0, 0, 0, 0.5); */
     position: absolute;
     bottom: -300px;
     right: 50px;
@@ -199,10 +208,14 @@ button, a {
     height: 100;
 }
 
+.slide-foreground img{
+    height: 100%;
+}
+
 .slider-indicators {
     position: absolute;
-    left: 200px;
-    bottom: 200px;
+    left: 150px;
+    bottom: 150px;
     display: flex;
 }
 
@@ -214,7 +227,6 @@ button, a {
     text-align: center;
 }
 
-
 .slider-indicators .indicator-line {
     margin-top: 50px;
     height: 2px;
@@ -225,6 +237,44 @@ button, a {
 }
 
 
+.slide-content {
+    width: 500px;
+    margin-top: 150px;
+    margin-left: 0px;
+}
+
+.slide-content h1 {
+    text-align: center;
+    background: #e2b8bd;
+    padding: 30px 40px;
+    border-radius: 100px;
+    font-size: 28px;
+    color: #649483;
+}
+
+.slide-cta {
+    position: absolute;
+    left: 150px;
+    margin-top: -35px;
+}
+
+.slide-content p {
+    margin-top: 70px;
+    font-size: 20px;
+    text-align: center;
+    color: #649483;
+}
+
+
+.slide-cta button {
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    background-color: #649483;
+    color: #fff;
+}
 
 
 
@@ -268,6 +318,9 @@ button, a {
 
 
 
+
+
+
 @media only screen and (max-width: 600px) {
     .drawer-container button{
         top: 30px;
@@ -304,5 +357,11 @@ button, a {
         width: 100%;
         right: 0;
         bottom: -500px;
+    }
+
+
+    #custom-mouse-2, 
+    #custom-mouse-1 {
+        display: none;
     }
 }

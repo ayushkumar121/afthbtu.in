@@ -93,6 +93,8 @@ function drawerreact(state) {
 
 const slides = 4;
 const slideWidth = 1000;
+const slideInterval = 6
+
 
 let transitioning = false;
 let currentSlide = 1;
@@ -111,12 +113,12 @@ function moveRight() {
         fgAnimation02();
 
         gsap.to('.slider', {
-            duration: 2,
+            duration: 1,
             x: `-=${slideWidth}`,
             ease: "slow(0.7, 0.7, false)",
             onComplete: () => {
                 gsap.to('.slider', { duration: 0, x: -slideWidth });
-                gsap.to('.slide.active .slide-foreground', { x: 0, y: 0, height: 0, opacity: 0 });
+                gsap.to('.slide.active .slide-foreground', { x: 0, y: 0, opacity: 0 });
                 slider.appendChild(document.querySelector('.slider > div:first-child'));
 
                 transitioning = false;
@@ -127,6 +129,7 @@ function moveRight() {
                 }
 
                 setActiveSlide();
+
                 indicator();
                 fgAnimation01();
             }
@@ -138,16 +141,16 @@ function moveLeft() {
     if (!transitioning) {
         transitioning = true;
 
-        fgAnimation02();
+        fgAnimation02(false);
 
         gsap.to('.slider', {
-            duration: 2,
+            duration: 1,
             x: `+=${slideWidth}`,
             ease: "fast(0.7, 0.7, false)",
             onComplete: () => {
 
                 gsap.to('.slider', { duration: 0, x: -slideWidth });
-                gsap.to('.slide.active .slide-foreground', { x: 0, y: 0, height: 0, opacity: 0 });
+                gsap.to('.slide.active .slide-foreground', { x: 0, y: 0, opacity: 0 });
                 slider.prepend(document.querySelector('.slider > div:last-child'));
 
                 transitioning = false;
@@ -177,28 +180,60 @@ function setActiveSlide() {
 }
 
 function fgAnimation01() {
+    gsap.to('.slide.active .slide-content', {
+        duration: .2,
+        opacity: 1,
+        x: 0,
+    });
+
     gsap.to('.slide.active .slide-foreground', {
-        duration: 1,
+        duration: .6,
         y: -200,
-        height: 600,
+        // height: 600,
         opacity: 1,
         ease: "expo.out",
     })
 }
 
-function fgAnimation02() {
+function fgAnimation02(forward = true) {
     // gsap.to('.slide.active .slide-foreground', {
     //     duration: 1,
     //     x: -150,
     //     opacity: 0,
     // })
 
+    gsap.to('.slide.active .slide-content', {
+        duration: .4,
+        opacity: 0,
+        x: -300,
+        onComplete: () => {
+            gsap.to('.slide.active .slide-content', { duration: 0, x: 300 })
+        }
+    });
+
+
+    if (forward) {
+        gsap.to('.slide.active .slide-foreground', {
+            duration: 1,
+            x: `+=${slideWidth}`,
+            ease: "slow(0.7, 0.7, false)",
+        })
+    } else {
+        gsap.to('.slide.active .slide-foreground', {
+            duration: 1,
+            x: `-=${slideWidth}`,
+            ease: "slow(0.7, 0.7, false)",
+        })
+    }
+
     gsap.to('.slide.active .slide-foreground', {
-        duration: 1,
+        duration: .6,
         y: 0,
-        height: 100,
         opacity: 0,
         ease: "expo.in",
+        // onComplete: () => {
+        //     gsap.to('.slide.active .slide-foreground', { duration: 0, y: 0, height: 100 })
+        // }
     })
 }
 
@@ -213,7 +248,7 @@ function indicator() {
             ease: "expo.out"
         })
         .to(`.slider-indicators .indicator-line`, {
-            duration: 5.5,
+            duration: slideInterval - 1.5,
             width: '140px',
             ease: "none"
         })
@@ -224,11 +259,13 @@ function indicator() {
 fgAnimation01();
 indicator();
 
+
 setInterval(() => {
     moveRight();
-}, 7000);
+}, slideInterval * 1000);
 
 
+// Mouse Handling
 
 function handleMouse(e) {
     var x = e.clientX;
@@ -250,8 +287,8 @@ function handleMouse(e) {
 
 function handleMouseOver() {
     gsap.to("#custom-mouse-2", {
-        scaleX: 1.5,
-        scaleY: 1.5,
+        scaleX: 1.3,
+        scaleY: 1.3,
         duration: .5,
         background: "rgba(0,0,0,.3)",
         ease: "slow(0.7, 0.7, false)"

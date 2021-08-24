@@ -24,6 +24,11 @@
             <img src="assets/logo.png" onmouseenter="" alt="logo" />
         </div>
 
+        <div class="background-gradients">
+            <img src="assets/gradient-topleft.png" style="position: fixed;" alt=" ">
+            <img src="assets/gradient-bottom.png" style="position: absolute; bottom: 0px" alt=" ">
+        </div>
+
 
         <header>
             <div class="drawer-container" x-data="{ open: false }" x-effect="drawerreact(open)">
@@ -51,29 +56,47 @@
         </header>
 
         <main>
+
             <div class="slider-container">
                 <div class="slider-viewport">
 
                     <div class="slider">
-                        <div class="slide active" style="background-color: thistle;">
+                        <div class="slide active">
+
+                            <div class="slide-content">
+                                <h1>Welcome to Association of Food Technologist</h1>
+
+                                <div class="slide-cta">
+                                    <button>
+                                        Register
+                                    </button>
+                                </div>
+
+                                <p>
+                                    Your own space to Connect, Attain, Emerge, Anchor
+                                </p>
+                            </div>
 
                             <div class="slide-foreground">
-
+                                <img src="assets/slides/slide-1-fg.png" alt="welcome-picture">
                             </div>
                         </div>
-                        <div class="slide" style="background-color: lightgreen;">
+                        <div class="slide">
                             <div class="slide-foreground">
-
+                                <img src="assets/slides/slide-2-fg.png" style="margin-left: -500px; height: 600px;"
+                                    alt="about-picture">
                             </div>
                         </div>
-                        <div class="slide" style="background-color: lightskyblue;">
+                        <div class="slide">
                             <div class="slide-foreground">
-
+                                <img src="assets/slides/slide-3-fg.png" style="margin-left: -250px; height: 600px;"
+                                    alt="events-picture">
                             </div>
                         </div>
-                        <div class="slide" style="background-color: palegoldenrod;">
+                        <div class="slide">
                             <div class="slide-foreground">
-
+                                <img src="assets/slides/slide-4-fg.png" style="margin-left: -500px; margin-top: -50px; height: 600px;"
+                                    alt="about-picture">
                             </div>
                         </div>
                     </div>
