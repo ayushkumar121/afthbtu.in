@@ -14,11 +14,11 @@ body {
     font-family: 'DM Sans', sans-serif;
     background: var(--background);
     overflow: hidden;
-   /* cursor: none; */
+    cursor: none;
 }
 
 button, a {
-   /* cursor: none; */
+    cursor: none;
     outline: none;
 }
 
@@ -115,7 +115,7 @@ button, a {
     background: #000;
     width: 400px;
     height: 100px;
-    margin-left: 700px;
+    margin-left: 40%;
     margin-top: 200px;
     position: absolute;
 }
@@ -249,6 +249,7 @@ button, a {
     padding: 30px 40px;
     border-radius: 100px;
     font-size: 28px;
+    font-family: 'Dela Gothic One', cursive;
     color: #649483;
 }
 
@@ -267,6 +268,7 @@ button, a {
 
 
 .slide-cta button {
+    font-family: 'Dela Gothic One', cursive;
     height: 70px;
     width: 200px;
     border: none;
@@ -286,14 +288,12 @@ button, a {
     border-radius: 35px;
 	position: absolute;
 	margin-top: -35px;
+	padding-right: 20px;
 }
 
 .slide-cta button .anim-bg {
 	background: #649483;
-}
-
-.slide-cta button .anim-bg {
-    padding-right: 20px;
+    	padding-right: 20px;
 }
 
 
@@ -334,6 +334,23 @@ button, a {
 
 
 @media only screen and (max-width: 600px) {
+    body {
+	cursor: unset;
+    }
+    
+    button, a {
+	cursor: unset;
+    }
+
+   .slide-foreground {
+    	height: 200px;
+    	margin-right: -300px;
+    	height: 500px;
+    	margin-top: -200px;
+    	width: 100%;
+    	bottom: -400px;
+   }
+
     .drawer-container button{
         top: 30px;
         right: 30px;
@@ -371,6 +388,32 @@ button, a {
         bottom: -500px;
     }
 
+    .slide-cta {
+    	position: absolute;
+    	margin-top: -35px;
+    }
+   
+    .slide-content {
+       width: 400px;
+       margin-top: 120px;
+       margin-left: 250px;
+   }
+
+   .slide-content h1 {
+      font-size: 18px;
+      padding: 30px 20px;
+      margin-left: 100px;
+   }
+
+   .slide-content p {
+      font-size: 14px;
+      text-align: center;
+      margin-left: 80px;
+   }
+
+   .slide-cta button {
+      scale: .8;
+   }
 
     #custom-mouse-2, 
     #custom-mouse-1 {
