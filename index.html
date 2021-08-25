@@ -9,15 +9,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Playfair+Display&display=swap" rel="stylesheet">  
-     
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
 </head>
 
 <body onmousemove="handleMouse(event)">
-  
+
     <div class="content">
 
         <div class="logo">
@@ -67,9 +67,14 @@
                                 <h1>Welcome to Association of Food Technologist</h1>
 
                                 <div class="slide-cta">
-                                    <button>
-                                      <div onmouseover="handleButtonHover(this)"  class="anim-bg"></div>
-																			<div>Register</div>
+                                    <button onmouseover="handleButtonHover(this);" 
+                                            onmouseleave="handleButtonOut(this);">
+                                        <div class="anim-bg">
+                                            <img src="assets/arrow--right.svg" style="margin-left: auto;" />
+                                        </div>
+                                        <div>
+                                            Register
+                                        </div>
                                     </button>
                                 </div>
 
@@ -96,8 +101,8 @@
                         </div>
                         <div class="slide">
                             <div class="slide-foreground">
-                                <img src="assets/slides/slide-4-fg.png" style="margin-left: -500px; margin-top: -50px; height: 600px;"
-                                    alt="about-picture">
+                                <img src="assets/slides/slide-4-fg.png"
+                                    style="margin-left: -500px; margin-top: -50px; height: 600px;" alt="about-picture">
                             </div>
                         </div>
                     </div>
