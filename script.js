@@ -259,13 +259,23 @@ function indicator() {
 fgAnimation01();
 indicator();
 
-
+/*
 setInterval(() => {
     moveRight();
 }, slideInterval * 1000);
-
+*/
 
 // Mouse Handling
+
+function handleButtonHover(sender) {
+		console.log(sender)
+		gsap.to(sender, {
+			duration: 1,
+			x: 150,
+			width: 70
+		});
+}
+
 
 function handleMouse(e) {
     var x = e.clientX;
