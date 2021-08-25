@@ -268,13 +268,28 @@ setInterval(() => {
 // Mouse Handling
 
 function handleButtonHover(sender) {
-		console.log(sender)
-		gsap.to(sender, {
-			duration: 1,
-			x: 150,
-			width: 70
-		});
+    gsap.to(sender.querySelector('.anim-bg'), {
+        duration: .4,
+        x: 140,
+        width: 70,
+        ease: "power2.out"
+    });
+
+    handleMouseOver();
 }
+
+function handleButtonOut(sender) {
+    gsap.to(sender.querySelector('.anim-bg'), {
+        duration: .4,
+        x: 0,
+        width: 200,
+        ease: "power2.out"
+    });
+
+    handleMouseOut();
+}
+
+
 
 
 function handleMouse(e) {
