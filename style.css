@@ -14,11 +14,11 @@ body {
     font-family: 'DM Sans', sans-serif;
     background: var(--background);
     overflow: hidden;
-    /* cursor: none; */
+    cursor: none;
 }
 
 button, a {
-    /* cursor: none; */
+    cursor: none;
     outline: none;
 }
 
