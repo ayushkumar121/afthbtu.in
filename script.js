@@ -1,5 +1,6 @@
 // timelines
 
+window.scroll(0, 0)
 
 // drawer
 const drawer01tl = gsap.timeline({ paused: true });
@@ -47,15 +48,15 @@ drawer04tl
         ease: "expo.out"
     });
 
-// Content feature animations
-drawer05tl
-    .to(".drawer-feature", {
-        duration: 0.3,
-        delay: .6,
-        marginTop: 0,
-        height: 400,
-        ease: "ease.out"
-    });
+// // Content feature animations
+// drawer05tl
+//     .to(".drawer-feature", {
+//         duration: 0.3,
+//         delay: .6,
+//         marginTop: 0,
+//         height: 400,
+//         ease: "ease.out"
+//     });
 
 // Content animations
 drawer06tl
@@ -77,7 +78,7 @@ function drawerreact(state) {
         drawer02tl.play();
         drawer03tl.play();
         drawer04tl.play();
-        drawer05tl.play();
+        // drawer05tl.play();
     }
     else {
         drawer01tl.reverse();
@@ -85,7 +86,7 @@ function drawerreact(state) {
         drawer02tl.reverse();
         drawer03tl.reverse();
         drawer04tl.reverse();
-        drawer05tl.reverse();
+        // drawer05tl.reverse();
     }
 }
 
@@ -272,7 +273,7 @@ function handleButtonHover(sender) {
         duration: .4,
         x: 140,
         width: 70,
-        ease: "power2.out"
+        ease: "slow(0.7, 0.7, false)",
     });
 
     handleMouseOver();
@@ -283,12 +284,169 @@ function handleButtonOut(sender) {
         duration: .4,
         x: 0,
         width: 200,
-        ease: "power2.out"
+        ease: "slow(0.7, 0.7, false)",
     });
 
     handleMouseOut();
 }
 
+
+
+let scrollG = ''
+let viewG = ''
+
+
+function handleReadMore(scroll, view) {
+
+    scrollG = scroll
+    viewG = view
+
+    gsap.to('.close-btn', {
+        duration: .5,
+        opacity: 1,
+    })
+
+    gsap.to('.logo img', {
+        duration: 1,
+        left: (window.screen.width > 600 ) ? "50%" : "40%",
+        ease: "slow(0.7, 0.7, false)"
+    })
+
+    gsap.to(view, {
+        duration: 0,
+        display: "block"
+    })
+
+    gsap.to('.slide-content', {
+        duration: .5,
+        y: -100,
+        opacity: 0,
+        ease: "slow(0.7, 0.7, false)",
+    })
+
+    gsap.to('.slider-indicators', {
+        duration: .5,
+        y: -400,
+        ease: "slow(0.7, 0.7, false)",
+    })
+
+    gsap.to('.slider-controlles', {
+        duration: .5,
+        x: 300,
+        ease: "slow(0.7, 0.7, false)",
+    })
+
+    gsap.to(`.slider-view`, {
+        display: "block"
+    })
+
+    if (scroll != '') {
+        gsap.to('.scroll-btn', {
+            duration: .2,
+            opacity: 1,
+            bottom: "10px"
+        })
+
+        gsap.to(`.slider-view, ${scroll}`, {
+            display: "block"
+        })
+
+        gsap.to('body', {
+            overflowY: "scroll",
+        })
+    }
+
+    gsap.to(view, {
+        duration: .5,
+        y: -500,
+        opacity: 1,
+        ease: "slow(0.7, 0.7, false)",
+    })
+
+    if(window.screen.width < 600) {
+        gsap.to('.slide-foreground', {
+            duration: 0.5,
+            opacity: 0
+        })
+    }
+}
+
+function handleCloseReadMore() {
+
+    gsap.to('.close-btn', {
+        duration: .5,
+        opacity: 0,
+    })
+
+    gsap.to('.logo img', {
+        duration: 1,
+        left: "50px",
+        ease: "slow(0.7, 0.7, false)"
+    })
+
+    gsap.to(viewG, {
+        duration: 1,
+        y: 0,
+        opacity: 0,
+        ease: "slow(0.7, 0.7, false)",
+        onComplete: () => {
+            gsap.to(viewG, { duration: 0, display: "none" })
+        }
+    })
+
+    gsap.to('.slide-content', {
+        duration: 1,
+        y: 0,
+        opacity: 1,
+        ease: "slow(0.7, 0.7, false)",
+    })
+
+    gsap.to('.slider-indicators', {
+        duration: .5,
+        y: 0,
+        ease: "slow(0.7, 0.7, false)",
+    })
+
+    gsap.to('.slider-controlles', {
+        duration: .5,
+        x: 0,
+        ease: "slow(0.7, 0.7, false)",
+    })
+
+    gsap.to(`.slider-view`, {
+        display: "none"
+    })
+
+
+    if (scrollG != '') {
+
+        gsap.to('.scroll-btn', {
+            duration: .2,
+            opacity: 0,
+            bottom: "10px"
+        })
+
+        gsap.to(`${scrollG}`, {
+            display: "none"
+        })
+
+        window.scroll(0, 0)
+
+        gsap.to('body', {
+            overflowY: "hidden",
+        })
+    }
+
+    // gsap.to(window, {duration: 2, scrollTo: 0});
+
+
+    if(window.screen.width < 600) {
+        gsap.to('.slide-foreground', {
+            duration: 0.5,
+            opacity: 1
+        })
+    }
+}
 
 
 

@@ -14,11 +14,11 @@ body {
     font-family: 'DM Sans', sans-serif;
     background: var(--background);
     overflow: hidden;
-    cursor: none;
+    /* cursor: none; */
 }
 
 button, a {
-    cursor: none;
+    /* cursor: none; */
     outline: none;
 }
 
@@ -38,16 +38,44 @@ button, a {
 
 
 
-.logo img{
-    top: 50px;
-    left: 50px;
-    width: 100px;
+
+
+.content-bar {
     height: 100px;
+    width: 100%;
+    background-color: var(--background);
+    position: fixed;
+    z-index: 2;
+    opacity: 0;
+}
+
+.logo img{
+    top: 15px;
+    left: 50px;
+    width: 70px;
+    height: 70px;
     position: fixed;
     z-index: 5;
 }
 
+.close-btn {
+    border: none;
+    outline: none;
+    width: 70px;
+    height: 70px;
+    z-index: 6;
+    position: fixed;
+    top: 20px;
+    left: 40px;
+    opacity: 0;
+    background: #fff;
+    border-radius: 100%;
+}
 
+.close-btn img{
+    width: 30px;
+    height: 30px;
+}
 
 
 .unset-text-stroke {
@@ -56,14 +84,14 @@ button, a {
 
 .drawer-container button{
     z-index: 100;
-    top: 50px;
+    top: 15px;
     right: 50px;
     position: fixed;
     z-index: 5;
     width: 70px;
     height: 70px;
     border: none;
-    background: var(--background);
+    background: #fff;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -85,9 +113,12 @@ button, a {
     width: 1px;
     height: 1px;    
     border-radius:100%;
-    top: 60px;
+    top: 15px;
     right: 60px;
-    background-color: palegoldenrod;
+    
+    background-color: var(--background);
+
+
     padding: 20px;
     position: fixed;
 }
@@ -96,7 +127,7 @@ button, a {
     z-index: 2;
     position: fixed;
     top: 100px;
-    left: 200px;
+    left: 180px;
     width: 100%;
     height: 100%;
     opacity: 0;
@@ -115,7 +146,7 @@ button, a {
     background: #000;
     width: 400px;
     height: 100px;
-    margin-left: 40%;
+    margin-left: 50%;
     margin-top: 200px;
     position: absolute;
 }
@@ -205,7 +236,7 @@ button, a {
     bottom: -300px;
     right: 50px;
     opacity: 0;
-    height: 100;
+    z-index: -1;
 }
 
 .slide-foreground img{
@@ -214,23 +245,24 @@ button, a {
 
 .slider-indicators {
     position: absolute;
-    left: 150px;
-    bottom: 150px;
+    left: 70px;
+    bottom: 120px;
     display: flex;
 }
 
 
 .slider-indicators .indicator {
     font-size: 24px;
-    font-weight: 600;
+    color: #649483;
+    font-weight: 800;
     width: 140px;
     text-align: center;
 }
 
 .slider-indicators .indicator-line {
     margin-top: 50px;
-    height: 2px;
-    background: #000;
+    height: 4px;
+    background: #649483;
     border-radius: 2px;
     width: 0px;
     position: absolute;
@@ -238,48 +270,51 @@ button, a {
 
 
 .slide-content {
-    width: 500px;
+    width: 600px;
     margin-top: 150px;
-    margin-left: 0px;
+    margin-left: -100px;
 }
 
 .slide-content h1 {
     text-align: center;
     background: #e2b8bd;
-    padding: 30px 40px;
+    padding: 20px 40px;
     border-radius: 100px;
-    font-size: 28px;
+    font-size: 32px;
     font-family: 'Dela Gothic One', cursive;
     color: #649483;
+    text-transform: uppercase;
 }
 
 .slide-cta {
     position: absolute;
-    left: 150px;
+    left: 200px;
     margin-top: -35px;
 }
 
 .slide-content p {
-    margin-top: 70px;
+    margin-top: 80px;
     font-size: 20px;
     text-align: center;
     color: #649483;
 }
 
 
-.slide-cta button {
+.slide-cta button, form button {
     font-family: 'Dela Gothic One', cursive;
     height: 70px;
     width: 200px;
     border: none;
     border-radius: 35px;
     font-size: 18px;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     padding:0;
 }
 
-.slide-cta button div {
+.slide-cta button div, form button div {
+    padding: 0;
+    margin: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -288,14 +323,71 @@ button, a {
     border-radius: 35px;
 	position: absolute;
 	margin-top: -35px;
-	padding-right: 20px;
+    padding-right: 40px;
 }
 
-.slide-cta button .anim-bg {
+.slide-cta button .anim-bg, form button .anim-bg{
 	background: #649483;
-    	padding-right: 20px;
+    padding-right: 20px;
 }
 
+
+
+.scroll-btn{
+    background: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    left: 40%;
+    bottom: -20px;
+    opacity: 0;
+}
+
+.scroll-btn img {
+    height: 40px;
+    width: 40px;
+}
+
+
+.slider-view {
+    top: 100%;
+}
+
+.slider-view > div {
+    top: 100%;
+    width: 400px;
+    position: absolute;
+    left: 100px;
+    opacity: 0;
+    display: none;
+    padding-top: 30px;
+}
+
+.view-register {
+    left: 150px;
+}
+
+section {
+    /* height: 200px; */
+    display: none;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.form-control:focus{
+    border: 3px solid  #649483;
+}
+
+.form-control {
+    height: 50px;
+    width: 100%;
+    border: 2px solid #eee;
+    margin: 5px 0;
+    border-radius: 20px;
+    padding-left: 10px;
+    outline: none;
+    font-size: 18px;
+}
 
 
 
@@ -327,10 +419,24 @@ button, a {
 
 
 
+table {
+    width: 100%;
+}
+
+tr{
+    height: 50px;
+}
+
+tr:nth-child(1) {
+    background-color: #649483;
+}
 
 
-
-
+@media only screen and (max-width: 1400px) {
+    /* body{
+        zoom: 1.5;
+    } */
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -358,6 +464,21 @@ button, a {
         height: 55px;
     }
 
+    .close-btn {
+        top: 30px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .view-register {
+        left: 10px !important;
+    }
+
+    .form-control {
+        width: 80vw;
+    }
+
     .logo img{
         top: 30px;
         left: 30px;
@@ -375,7 +496,7 @@ button, a {
     }
 
     .drawer-content{
-        left: 50px;
+        left: 20px;
     }
 
     .slider-indicators{
@@ -405,16 +526,43 @@ button, a {
       margin-left: 100px;
    }
 
+
    .slide-content p {
-      font-size: 14px;
-      text-align: center;
-      margin-left: 80px;
-   }
+        display: none;
+    }
+
 
    .slide-cta button {
       scale: .8;
    }
 
+   .slide-cta {
+        left: 150px;
+    }
+
+    .slider-view > div {
+        width: 80%;
+        left: 30px;
+        margin-top: -50px;
+    }
+
+    .scroll-btn {
+        visibility: hidden;
+    }  
+
+    .gallery{
+        width: 100%;
+        justify-content: center;
+    }
+
+    section h2 {
+        margin-left: 50px;
+    }
+
+    .drawer-menu a{
+        font-size: 48px;
+    }
+    
     #custom-mouse-2, 
     #custom-mouse-1 {
         display: none;

@@ -10,24 +10,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Dela+Gothic+One&display=swap" rel="stylesheet"> 
-     
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
     <link rel="stylesheet" href="style.css" />
+
+
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
 </head>
 
 <body onmousemove="handleMouse(event)">
-
     <div class="content">
 
         <div class="logo">
             <img src="assets/logo.png" alt="logo" />
         </div>
 
+
+        <button class="close-btn" onmouseover="handleMouseOver();" onmouseleave="handleMouseOut();"
+            onclick="handleCloseReadMore()">
+            <img src="assets/chevron--left.svg" alt="close" />
+        </button>
+
+
         <div class="background-gradients">
-            <img src="assets/gradient-topleft.png" style="position: fixed;" alt=" ">
-            <img src="assets/gradient-bottom.png" style="position: absolute; bottom: 0px" alt=" ">
+            <img src="assets/gradient-topleft.png" style="position: fixed; top: 0; z-index: -1" alt=" ">
+            <img src="assets/gradient-bottom.png" style="position: fixed; bottom: 0px;  z-index: -1" alt=" ">
         </div>
 
 
@@ -43,13 +53,15 @@
                 <div class="drawer-content">
 
                     <div class="drawer-menu">
-                        <a href="#">P<span class="unset-text-stroke">e</span>rks</a>
-                        <a href="#"><span class="unset-text-stroke">L</span>ab</a>
-                        <a href="#">Ab<span class="unset-text-stroke">o</span>ut us</a>
-                        <a href="#"><span class="unset-text-stroke">M</span>y Account</a>
+                        <p style="font-size: 28px;">Created By</p>
+
+                        <a href="https://www.linkedin.com/in/ayush-kumar-b244b8131/" target="_blank">A<span
+                                class="unset-text-stroke">y</span>ush Kumar</a>
+                        <a href="https://www.linkedin.com/in/pawan-sharma-9b37681a4/" target="_blank">Pawan <span
+                                class="unset-text-stroke">S</span>harma</a>
                     </div>
 
-                    <div class="drawer-feature"></div>
+                    <!-- <div class="drawer-feature"></div> -->
 
                 </div>
 
@@ -68,8 +80,8 @@
                                 <h1>Welcome to Association of Food Technologist</h1>
 
                                 <div class="slide-cta">
-                                    <button onmouseover="handleButtonHover(this);" 
-                                            onmouseleave="handleButtonOut(this);">
+                                    <button onmouseover="handleButtonHover(this);" onmouseleave="handleButtonOut(this);"
+                                        onclick="handleReadMore('', '.view-register')">
                                         <div class="anim-bg">
                                             <img src="assets/arrow--right.svg" style="margin-left: auto;" />
                                         </div>
@@ -89,26 +101,175 @@
                             </div>
                         </div>
                         <div class="slide">
+                            <div class="slide-content" style="margin-top: 200px;">
+                                <h1>About us</h1>
+
+                                <div class="slide-cta">
+                                    <button onmouseover="handleButtonHover(this);" onmouseleave="handleButtonOut(this);"
+                                        onclick="handleReadMore('.about-section', '.view-about')">
+                                        <div class="anim-bg">
+                                            <img src="assets/arrow--right.svg" style="margin-left: auto;" />
+                                        </div>
+                                        <div>
+                                            Read more
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <p>
+                                    Passionate team of harcourtians
+                                </p>
+                            </div>
+
                             <div class="slide-foreground">
                                 <img src="assets/slides/slide-2-fg.png" style="margin-left: -500px; height: 600px;"
                                     alt="about-picture">
                             </div>
                         </div>
                         <div class="slide">
+                            <div class="slide-content" style="margin-top: 200px;">
+                                <h1>Events</h1>
+
+                                <div class="slide-cta">
+                                    <button onmouseover="handleButtonHover(this);" onmouseleave="handleButtonOut(this);"
+                                        onclick="handleReadMore('.events-section', '.view-events')">
+                                        <div class="anim-bg">
+                                            <img src="assets/arrow--right.svg" style="margin-left: auto;" />
+                                        </div>
+                                        <div>
+                                            Read more
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <p>
+                                    Interactive Session with Batch 2010
+                                </p>
+                            </div>
+
                             <div class="slide-foreground">
                                 <img src="assets/slides/slide-3-fg.png" style="margin-left: -250px; height: 600px;"
                                     alt="events-picture">
                             </div>
                         </div>
                         <div class="slide">
+                            <div class="slide-content" style="margin-top: 200px;">
+                                <h1>Contact Us</h1>
+
+                                <div class="slide-cta">
+                                    <button onmouseover="handleButtonHover(this);" onmouseleave="handleButtonOut(this);"
+                                        onclick="handleReadMore('.events-section', '.view-contact')">
+                                        <div class="anim-bg">
+                                            <img src="assets/arrow--right.svg" style="margin-left: auto;" />
+                                        </div>
+                                        <div>
+                                            Read more
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <p>
+                                    Send us your love
+                                </p>
+                            </div>
+
                             <div class="slide-foreground">
-                                <img src="assets/slides/slide-4-fg.png"
-                                    style="margin-left: -500px; margin-top: -50px; height: 600px;" alt="about-picture">
+                                <img src="assets/slides/slide-4-fg.png" style="margin-top: -50px; height: 600px;"
+                                    alt="about-picture">
                             </div>
                         </div>
                     </div>
 
+
+                    <button class="scroll-btn">
+                        <img src="assets/auto-scroll.svg" alt="scroll" />
+                    </button>
+
                 </div>
+            </div>
+
+            <div class="slider-view">
+
+                <div class="view-register">
+                    <form action="https://send.pageclip.co/PJsIIDn7N0h2JkeWM4TIxhcvOtt6h0p7/alumni-registration"
+                        class="pageclip-form" method="post">
+                        <!-- Replace these inputs with your own. Make sure they have a "name" attribute! -->
+                        <input class="form-control" type="name" name="name" placeholder="Full Name" />
+                        <input class="form-control" type="email" name="email" placeholder="Email" />
+
+                        <input class="form-control" type="tel" name="mobile" placeholder="Mobile" />
+                        <input class="form-control" type="date" name="dob" placeholder="Date of birth" />
+
+                        <!-- <input type="date" name="wedding_anniversary" placeholder="Wedding Anniversary" /> -->
+                        <input class="form-control" type="url" name="linkedin" placeholder="Linkedin profile" />
+
+                        <!-- This button will have a loading spinner. Keep the inner span for best results. -->
+                        <button type="submit" onmouseover="handleButtonHover(this);"
+                            onmouseleave="handleButtonOut(this);" class="pageclip-form__submit"
+                            style="margin-top: 20px;">
+                            <div class="anim-bg">
+                                <img src="assets/arrow--right.svg" style="margin-left: auto;" />
+                            </div>
+                            <div>
+                                Send
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="view-about">
+                    <p>
+                        The Association of Food Technologists HBTU Kanpur aims to connect with all its affiliates,
+                        imbibe enough potential into budding minds & nurture the visionaries to redefine Food Processing
+                        as we know it today.
+                        It intents to ensure research challenges meet ends with innovation and modern techniques, pupils
+                        attain learning experiences from Alma Mater and Identify major opportunities of improvement in
+                        the industry.
+                        It aims to anchor development of proprietary tools, methods & techniques to encompass major
+                        challenges of the field and to ultimately train and shape the future and enthusiasm of the next
+                        generation Food Technologists.
+                    </p>
+                </div>
+
+                <div class="view-events">
+                    <h2>Interactive Session with Batch 2010</h2>
+                    <p>On 8th March 2021, we organized an Alumni meet up with some of our respected pass outs of batch
+                        2010, Namely-</p>
+
+                    <ul>
+                        <li>Mr. Nitin Sonker: QA Manager, Perfetti India ltd, Manesar plant</li>
+                        <li>Mr. Arvind Kumar Tiwari: Group Processing head, Valency International, Singapore</li>
+                        <li>Mr. Ajeet pratap Singh: Manager Application Group, Nestle India Ltd, Ponda Factory, Goa</li>
+                        <li>Mr. Lalit Kumar: Managing Director/CEO, Mirchandani Dynamech Spices</li>
+                        <li>Mr.Fatheh Bahadur : Director, JEE Expert</li>
+                    </ul>
+                </div>
+
+                <div class="view-contact">
+                    <form action="https://send.pageclip.co/PJsIIDn7N0h2JkeWM4TIxhcvOtt6h0p7/contact-form"
+                        class="pageclip-form" method="post">
+                        <!-- Replace these inputs with your own. Make sure they have a "name" attribute! -->
+                        <input class="form-control" type="name" name="name" placeholder="Full Name" />
+                        <input class="form-control" type="email" name="email" placeholder="Email" />
+
+                        <textarea class="form-control" style="height: 200px;" name="message" placeholder="Your Message">
+
+                        </textarea>
+
+                        <!-- This button will have a loading spinner. Keep the inner span for best results. -->
+                        <button type="submit" onmouseover="handleButtonHover(this);"
+                            onmouseleave="handleButtonOut(this);" class="pageclip-form__submit"
+                            style="margin-top: 20px;">
+                            <div class="anim-bg">
+                                <img src="assets/arrow--right.svg" style="margin-left: auto;" />
+                            </div>
+                            <div>
+                                Send
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
             </div>
 
             <div class="slider-indicators">
@@ -142,11 +303,126 @@
                 </button>
             </div>
 
-
         </main>
 
+        <section class="about-section">
+
+            <div style="padding: 50px 0;">
+                <h2>Our Team</h2>
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position of Resposibility</th>
+                        <th>Designation / Year</th>
+                    </tr>
+
+                    <tr>
+                        <td>Dr. Vivek Kumar </td>
+                        <td>Convener</td>
+                        <td>Associate Professor </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Himanshu Verma </td>
+                        <td>President</td>
+                        <td>Final FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Rohit Yadav </td>
+                        <td>Vice-President </td>
+                        <td>Final FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Pawan Sharma </td>
+                        <td>Secretary</td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Raj Shekhar Singh </td>
+                        <td>Joint Secretary </td>
+                        <td>2nd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Aman Kumar Singh </td>
+                        <td>Treasurer </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Aman Kumar Singh </td>
+                        <td>Treasurer </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>MMr. Abhishek Tiwari </td>
+                        <td>Treasurer </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Ms. Tejasvi Sinha </td>
+                        <td>Event Head </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Atul Singh</td>
+                        <td>Associate Event Head </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Abhay Raj Sachan </td>
+                        <td>Associate Event Head </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Akash Jaiswal </td>
+                        <td>Associate Content Head </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Aman Kumar </td>
+                        <td>Design Head </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mr. Kartikey Shukla </td>
+                        <td>Logistics Head </td>
+                        <td>3rd FT </td>
+                    </tr>
 
 
+                    <tr>
+                        <td>Mr. Baldev Singh </td>
+                        <td>Associate Logistics Head </td>
+                        <td>3rd FT </td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </section>
+
+        <section class="events-section">
+            <h2>Gallery</h2>
+
+            <div class="gallery" style="display: flex; flex-wrap: wrap;" x-data>
+                <template x-for="event in 8">
+                    <div x-html="`<img src='assets/events/interactive-session-2020/${event + 1}.jpeg' width='300' style='margin: 10px;' />`">
+                    </div>
+                </template>
+            </div>
+        </section>
 
     </div>
 
@@ -163,6 +439,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 </body>
 
 </html>
