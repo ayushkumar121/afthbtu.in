@@ -2,6 +2,29 @@
 
 window.scroll(0, 0)
 
+// var Timer = function (callback, delay) {
+//     var timerId, start, remaining = delay;
+
+//     this.pause = function () {
+//         window.clearTimeout(timerId);
+//         remaining -= Date.now() - start;
+//     };
+
+//     this.resume = function () {
+//         start = Date.now();
+//         window.clearTimeout(timerId);
+//         timerId = window.setTimeout(callback, remaining);
+//     };
+
+//     this.debug = () => console.log({ timerId, start, remaining })
+
+//     this.resume();
+// };
+
+let scrollG = ''
+let viewG = ''
+let timer = null
+
 // drawer
 const drawer01tl = gsap.timeline({ paused: true });
 const drawer02tl = gsap.timeline({ paused: true });
@@ -94,7 +117,7 @@ function drawerreact(state) {
 
 const slides = 4;
 const slideWidth = 1000;
-const slideInterval = 6
+const slideInterval = 7;
 
 
 let transitioning = false;
@@ -110,7 +133,6 @@ slider.prepend(document.querySelector('.slider > div:last-child'))
 function moveRight() {
     if (!transitioning) {
         transitioning = true;
-
         fgAnimation02();
 
         gsap.to('.slider', {
@@ -169,6 +191,86 @@ function moveLeft() {
     }
 }
 
+function moveTarget(target) {
+    if (viewG == '' && !transitioning) {
+
+        // if (timer != null)
+        //     timer.pause()
+
+        if (target > currentSlide) {
+
+            let diff = target - currentSlide
+            transitioning = true;
+
+            fgAnimation02(true, diff);
+
+            gsap.to('.slider', {
+                duration: 1,
+                x: `-=${slideWidth * diff}`,
+                ease: "slow(0.7, 0.7, false)",
+                onComplete: () => {
+
+                    for (let i = 0; i < diff; i++) {
+                        gsap.to('.slider', { duration: 0, x: -slideWidth });
+                        gsap.to('.slide.active .slide-foreground', { x: 0, y: 0, opacity: 0 });
+                        slider.appendChild(document.querySelector('.slider > div:first-child'));
+                    }
+
+                    transitioning = false;
+                    currentSlide = target;
+
+                    if (currentSlide > slides) {
+                        currentSlide = 1;
+                    }
+
+                    setActiveSlide();
+
+                    indicator();
+                    fgAnimation01();
+
+                    // Hack !!!
+                    // window.setTimeout(() => timer.resume(), slideInterval * 1000)
+                }
+            })
+
+        } else {
+
+            let diff = currentSlide - target
+            transitioning = true;
+
+            fgAnimation02(false, diff);
+
+            gsap.to('.slider', {
+                duration: 1,
+                x: `+=${slideWidth * diff}`,
+                ease: "fast(0.7, 0.7, false)",
+                onComplete: () => {
+                    for (let i = 0; i < diff; i++) {
+                        gsap.to('.slider', { duration: 0, x: -slideWidth });
+                        gsap.to('.slide.active .slide-foreground', { x: 0, y: 0, opacity: 0 });
+                        slider.prepend(document.querySelector('.slider > div:last-child'));
+                    }
+
+                    transitioning = false;
+                    currentSlide = target;
+
+                    if (currentSlide < 1) {
+                        currentSlide = slides;
+                    }
+
+                    setActiveSlide();
+                    indicator();
+                    fgAnimation01();
+
+                    // Hack !!!!
+                    // window.setTimeout(() => timer.resume(), slideInterval * 1000)
+                }
+            })
+
+        }
+    }
+}
+
 function setActiveSlide() {
     for (let i = 0; i < slides; i++) {
         const slide = slideList[i];
@@ -196,7 +298,7 @@ function fgAnimation01() {
     })
 }
 
-function fgAnimation02(forward = true) {
+function fgAnimation02(forward = true, diff = 1) {
     // gsap.to('.slide.active .slide-foreground', {
     //     duration: 1,
     //     x: -150,
@@ -216,13 +318,13 @@ function fgAnimation02(forward = true) {
     if (forward) {
         gsap.to('.slide.active .slide-foreground', {
             duration: 1,
-            x: `+=${slideWidth}`,
+            x: `+=${slideWidth * diff}`,
             ease: "slow(0.7, 0.7, false)",
         })
     } else {
         gsap.to('.slide.active .slide-foreground', {
             duration: 1,
-            x: `-=${slideWidth}`,
+            x: `-=${slideWidth * diff}`,
             ease: "slow(0.7, 0.7, false)",
         })
     }
@@ -260,11 +362,11 @@ function indicator() {
 fgAnimation01();
 indicator();
 
-/*
-setInterval(() => {
-    moveRight();
+
+setInterval(function () {
+    if (viewG == '')
+        moveRight();
 }, slideInterval * 1000);
-*/
 
 // Mouse Handling
 
@@ -290,12 +392,6 @@ function handleButtonOut(sender) {
     handleMouseOut();
 }
 
-
-
-let scrollG = ''
-let viewG = ''
-
-
 function handleReadMore(scroll, view) {
 
     scrollG = scroll
@@ -308,7 +404,7 @@ function handleReadMore(scroll, view) {
 
     gsap.to('.logo img', {
         duration: 1,
-        left: (window.screen.width > 600 ) ? "50%" : "40%",
+        left: (window.screen.width > 600) ? "50%" : "40%",
         ease: "slow(0.7, 0.7, false)"
     })
 
@@ -363,7 +459,7 @@ function handleReadMore(scroll, view) {
         ease: "slow(0.7, 0.7, false)",
     })
 
-    if(window.screen.width < 600) {
+    if (window.screen.width < 600) {
         gsap.to('.slide-foreground', {
             duration: 0.5,
             opacity: 0
@@ -372,6 +468,11 @@ function handleReadMore(scroll, view) {
 }
 
 function handleCloseReadMore() {
+    let view = viewG
+    let scroll = scrollG
+
+    viewG = ''
+    scrollG = ''
 
     gsap.to('.close-btn', {
         duration: .5,
@@ -384,13 +485,13 @@ function handleCloseReadMore() {
         ease: "slow(0.7, 0.7, false)"
     })
 
-    gsap.to(viewG, {
+    gsap.to(view, {
         duration: 1,
         y: 0,
         opacity: 0,
         ease: "slow(0.7, 0.7, false)",
         onComplete: () => {
-            gsap.to(viewG, { duration: 0, display: "none" })
+            gsap.to(view, { duration: 0, display: "none" })
         }
     })
 
@@ -418,7 +519,7 @@ function handleCloseReadMore() {
     })
 
 
-    if (scrollG != '') {
+    if (scroll != '') {
 
         gsap.to('.scroll-btn', {
             duration: .2,
@@ -426,7 +527,7 @@ function handleCloseReadMore() {
             bottom: "10px"
         })
 
-        gsap.to(`${scrollG}`, {
+        gsap.to(`${scroll}`, {
             display: "none"
         })
 
@@ -440,12 +541,13 @@ function handleCloseReadMore() {
     // gsap.to(window, {duration: 2, scrollTo: 0});
 
 
-    if(window.screen.width < 600) {
+    if (window.screen.width < 600) {
         gsap.to('.slide-foreground', {
             duration: 0.5,
             opacity: 1
         })
     }
+
 }
 
 
